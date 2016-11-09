@@ -4,7 +4,10 @@ import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 
@@ -62,5 +65,26 @@ public class SeleniumTest {
     @Test
     public void aboutTabExists() {
         assertEquals(Boolean.TRUE, isPresent(HomePage.aboutTab));
+    }
+
+    @Test
+    public void goToChromeDriver() throws InterruptedException {
+        WebElement searchBar = driver.findElement(By.name("q"));
+        searchBar.sendKeys("chromeDriver");
+        searchBar.submit();
+
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        WebElement link = driver.findElement(By.partialLinkText("GitHub"));
+        link.click();
+
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+
+        link = driver.findElement(By.linkText("Visit the full ChromeDriver site"));
+        link.click();
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+
+        System.out.println("Final page title: " + driver.getTitle());
+        assertEquals("ChromeDriver - WebDriver for Chrome", driver.getTitle());
+
     }
 }
