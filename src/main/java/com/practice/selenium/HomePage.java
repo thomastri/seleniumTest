@@ -9,7 +9,9 @@ import org.openqa.selenium.By;
 public class HomePage {
 
     // Available tabs
-    public static final By projectsTab = By.xpath("//li[@id='menu_projects']/a[contains(@href, 'projects/')]");
+    public static final By projectsTab = By.id("menu_projects");
+
+    // Checks to see that something called menu_x exists, and that it contains a link taking you to _/.
     public static final By downloadTab = By.xpath("//li[@id='menu_download']/a[contains(@href, 'download/')]");
     public static final By documentationTab = By.xpath("//li[@id='menu_documentation']/a[contains(@href, 'docs/')]");
     public static final By supportTab = By.xpath("//li[@id='menu_support']/a[contains(@href, 'support/')]");
